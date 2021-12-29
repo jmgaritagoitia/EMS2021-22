@@ -58,7 +58,7 @@ public class Poblacion {
 	
 	public void printPoblacion() {   
 		 
-	    for(int i = 0; i < lista.size(); i++) {
+	    for(int i = 0; i < lista.size(); i++) {	    	
 	    	FechaHora fecha = lista.get(i).getFechaNacimiento();
 	        // Documento	    	
 	        System.out.printf("%d;%s;", i, lista.get(i).getDocumento());
@@ -68,7 +68,7 @@ public class Poblacion {
 	        System.out.printf("%s;", lista.get(i).getEmail());
 	        // Códifo postal
 	        System.out.printf("%s,%s;", lista.get(i).getDireccion(), lista.get(i).getCp());	        
-	        // Fecha de naciemiento
+	        // Fecha de nacimiento
 	        System.out.printf("%02d/%02d/%04d\n", fecha.getFecha().getDia(), 
 	         fecha.getFecha().getMes(), 
 	         fecha.getFecha().getAnio());	        
@@ -79,7 +79,8 @@ public class Poblacion {
 	public String toString() {
 		String cadena = "";
 		for(int i = 0; i < lista.size(); i++) {
-	        // // Documento	    	    	
+			FechaHora fecha = lista.get(i).getFechaNacimiento();
+	        // Documento	    	    	
 	        cadena+=String.format("%s;", lista.get(i).getDocumento());
 	        // nombre y apellidos	              
 	        cadena+=String.format("%s,%s;",lista.get(i).getApellidos(), lista.get(i).getNombre());	        
@@ -88,9 +89,9 @@ public class Poblacion {
 	        // Direccion u código postal
 	        cadena+=String.format("%s,%s;", lista.get(i).getDireccion(), lista.get(i).getCp());	        
 	        // Fecha de nacimiento
-	        cadena+=String.format("%02d/%02d/%04d\n", lista.get(i).getFechaNacimiento().getFecha().getDia(), 
-	         lista.get(i).getFechaNacimiento().getFecha().getMes(), 
-	         lista.get(i).getFechaNacimiento().getFecha().getAnio());
+	        cadena+=String.format("%02d/%02d/%04d\n", fecha.getFecha().getDia(), 
+	        		fecha.getFecha().getMes(), 
+	        		fecha.getFecha().getAnio());
 		}
 		return cadena;
 	}
