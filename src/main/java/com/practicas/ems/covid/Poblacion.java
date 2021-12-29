@@ -86,7 +86,7 @@ public class Poblacion {
 	        cadena+=String.format("%s,%s;",lista.get(i).getApellidos(), lista.get(i).getNombre());	        
 	        // correo electrónico
 	        cadena+=String.format("%s;", lista.get(i).getEmail());
-	        // Direccion u código postal
+	        // Direccion y código postal
 	        cadena+=String.format("%s,%s;", lista.get(i).getDireccion(), lista.get(i).getCp());	        
 	        // Fecha de nacimiento
 	        cadena+=String.format("%02d/%02d/%04d\n", fecha.getFecha().getDia(), 
