@@ -78,6 +78,12 @@ public class ContactosCovid {
 		File archivo = null;
 		FileReader fr = null;
 		BufferedReader br = null;
+		String datas[] = null, data = null;
+		loadDataFile(fichero, reset, archivo, fr, br, datas, data);
+		
+	}
+
+	public void loadDataFile(String fichero, boolean reset, File archivo, FileReader fr, BufferedReader br, String datas[], String data ) {
 		try {
 			// Apertura del fichero y creacion de BufferedReader para poder
 			// hacer una lectura comoda (disponer del metodo readLine()).
@@ -88,10 +94,9 @@ public class ContactosCovid {
 				this.poblacion = new Poblacion();
 				this.localizacion = new Localizacion();
 			}
-			// Lectura del fichero
-			String data;
+			// Lectura del fichero			
 			while ((data = br.readLine()) != null) {
-				String datas[] = dividirEntrada(data);
+				datas = dividirEntrada(data);
 				for (String linea : datas) {
 					String datos[] = this.dividirLineaData(linea);
 					if (!datos[0].equals("PERSONA") && !datos[0].equals("LOCALIZACION")) {
@@ -129,7 +134,6 @@ public class ContactosCovid {
 			}
 		}
 	}
-
 	public int findPersona(String documento) throws EmsPersonNotFoundException {
 		int pos;
 		try {
