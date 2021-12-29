@@ -77,6 +77,7 @@ public class Persona {
 
 	@Override
 	public String toString() {
+		FechaHora fecha = getFechaNacimiento();
 		String cadena = "";
 		// Print position and document
 		cadena += String.format("%s;", getDocumento());
@@ -88,8 +89,8 @@ public class Persona {
 		cadena += String.format("%s,%s;", getDireccion(), getCp());
 		// Print birthday date
 		cadena += String.format("%02d/%02d/%04d\n", getFechaNacimiento().getFecha().getDia(),
-				getFechaNacimiento().getFecha().getMes(),
-				getFechaNacimiento().getFecha().getAnio());
+				fecha.getFecha().getMes(),
+				fecha.getFecha().getAnio());
 
 		return cadena;
 	}

@@ -3,6 +3,7 @@ package com.practicas.ems.covid;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import com.practica.ems.FechaHora;
 import com.practica.ems.Persona;
 import com.practica.exception.EmsDuplicatePersonException;
 import com.practica.exception.EmsPersonNotFoundException;
@@ -56,19 +57,21 @@ public class Poblacion {
 	}
 	
 	public void printPoblacion() {   
+		 
 	    for(int i = 0; i < lista.size(); i++) {
-	        // Print position and document	    	
+	    	FechaHora fecha = lista.get(i).getFechaNacimiento();
+	        // Documento	    	
 	        System.out.printf("%d;%s;", i, lista.get(i).getDocumento());
-	        // Print name and surname	              
+	        // nombre y apellidos	              
 	        System.out.printf("%s,%s;",lista.get(i).getApellidos(), lista.get(i).getNombre());	        
-	        // Print email	
+	        // correo electrónico
 	        System.out.printf("%s;", lista.get(i).getEmail());
-	        // Print address and CP
+	        // Códifo postal
 	        System.out.printf("%s,%s;", lista.get(i).getDireccion(), lista.get(i).getCp());	        
-	        // Print birthday date
-	        System.out.printf("%02d/%02d/%04d\n", lista.get(i).getFechaNacimiento().getFecha().getDia(), 
-	         lista.get(i).getFechaNacimiento().getFecha().getMes(), 
-	         lista.get(i).getFechaNacimiento().getFecha().getAnio());	        
+	        // Fecha de naciemiento
+	        System.out.printf("%02d/%02d/%04d\n", fecha.getFecha().getDia(), 
+	         fecha.getFecha().getMes(), 
+	         fecha.getFecha().getAnio());	        
 	    }
 	}
 
@@ -76,15 +79,15 @@ public class Poblacion {
 	public String toString() {
 		String cadena = "";
 		for(int i = 0; i < lista.size(); i++) {
-	        // Print position and document	    	
+	        // // Documento	    	    	
 	        cadena+=String.format("%s;", lista.get(i).getDocumento());
-	        // Print name and surname	              
+	        // nombre y apellidos	              
 	        cadena+=String.format("%s,%s;",lista.get(i).getApellidos(), lista.get(i).getNombre());	        
-	        // Print email	
+	        // correo electrónico
 	        cadena+=String.format("%s;", lista.get(i).getEmail());
-	        // Print address and CP
+	        // Direccion u código postal
 	        cadena+=String.format("%s,%s;", lista.get(i).getDireccion(), lista.get(i).getCp());	        
-	        // Print birthday date
+	        // Fecha de nacimiento
 	        cadena+=String.format("%02d/%02d/%04d\n", lista.get(i).getFechaNacimiento().getFecha().getDia(), 
 	         lista.get(i).getFechaNacimiento().getFecha().getMes(), 
 	         lista.get(i).getFechaNacimiento().getFecha().getAnio());
