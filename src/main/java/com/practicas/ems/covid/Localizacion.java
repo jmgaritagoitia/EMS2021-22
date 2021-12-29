@@ -3,11 +3,11 @@ package com.practicas.ems.covid;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import com.practica.ems.FechaHora;
-import com.practica.ems.Persona;
-import com.practica.ems.PosicionPersona;
 import com.practica.exception.EmsDuplicateLocationException;
 import com.practica.exception.EmsLocalizationNotFoundException;
+import com.practica.genericas.FechaHora;
+import com.practica.genericas.Persona;
+import com.practica.genericas.PosicionPersona;
 
 public class Localizacion {
 	LinkedList<PosicionPersona> lista;
@@ -51,8 +51,9 @@ public class Localizacion {
 	public void delLocalizacion(String documento, String fecha, String hora) throws EmsLocalizationNotFoundException {
 	    int pos=-1;
 	    int i;
-	    
-	    // Find if it exists
+	    /**
+	     *  Busca la localización, sino existe lanza una excepción
+	     */
 	    try {
 			pos = findLocalizacion(documento, fecha, hora);
 		} catch (EmsLocalizationNotFoundException e) {
@@ -97,6 +98,7 @@ public class Localizacion {
 		return cadena;		
 	}
 	
+	@SuppressWarnings("unused")
 	private FechaHora parsearFecha (String fecha) {
 		int dia, mes, anio;
 		String[] valores = fecha.split("\\/");

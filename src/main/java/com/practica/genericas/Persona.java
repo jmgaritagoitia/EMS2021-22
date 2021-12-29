@@ -1,4 +1,4 @@
-package com.practica.ems;
+package com.practica.genericas;
 
 public class Persona {
 	private String nombre, apellidos, documento, email, direccion, cp;

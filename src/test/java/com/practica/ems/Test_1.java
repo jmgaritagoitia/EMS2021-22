@@ -24,12 +24,12 @@ public class Test_1 {
 
 	@BeforeEach
 	void setUp() {
-		String test_data_str = "PERSONA;87654321K;Jessica;Diaz;jessica.diaz@ems.com;La calle de Jessica, 33;28033;25/01/1980\n" +
+		String test_data_str = "PERSONA;12121212R;Jessica;Diaz;jessica.diaz@ems.com;La calle de Jessica, 33;28033;25/01/1980\n" +
 	            "PERSONA;98765432J;Angel;Panizo;angel.panizo@ems.com;La calle de Angel, 46;28871;12/01/1995\n" +
-	            "LOCALIZACION;87654321K;25/10/2021;23:41;91.3970;12.1687\n" +
-	            "LOCALIZACION;87654321K;25/10/2021;23:45;91.3970;12.1695\n" +
+	            "LOCALIZACION;12121212R;25/10/2021;23:41;91.3970;12.1687\n" +
+	            "LOCALIZACION;12121212R;25/10/2021;23:45;91.3970;12.1695\n" +
 	            "LOCALIZACION;98765432J;25/10/2021;23:55;91.3971;12.1699\n" +
-	            "LOCALIZACION;87654321K;25/10/2021;23:55;91.3971;12.1699\n";
+	            "LOCALIZACION;12121212R;25/10/2021;23:55;91.3971;12.1699\n";
 		contactosCovid = new ContactosCovid();
 		try {
 			contactosCovid.loadData(test_data_str, false);
@@ -45,10 +45,10 @@ public class Test_1 {
 	void test_1_1() {
 		assertThrows(EmsInvalidTypeException.class, () -> {
 			contactosCovid.loadData(
-					"PERSONAS;87654321K;Jessica;Diaz;jessica.diaz@ems.com;La calle de Jessica, 33;28033;25/01/1980", false);
+					"PERSONAS;12121212R;Jessica;Diaz;jessica.diaz@ems.com;La calle de Jessica, 33;28033;25/01/1980", false);
 		});
 		assertThrows(EmsInvalidTypeException.class, () -> {
-			contactosCovid.loadData("LOCALIZACIONA;87654321K;25/10/2021;23:41;41.3870;2.1698\n", false);
+			contactosCovid.loadData("LOCALIZACIONA;12121212R;25/10/2021;23:41;41.3870;2.1698\n", false);
 		});
 	}
 
@@ -57,7 +57,7 @@ public class Test_1 {
 	void test_1_2() {
 		assertThrows(EmsInvalidNumberOfDataException.class, () -> {
 			contactosCovid.loadData(
-					"PERSONA;87654321K;Jessica;Diaz;jessica.diaz@ems.com;La calle de Jessica, 33;28033;25/01/1980;extra de Jessica\n",
+					"PERSONA;12121212R;Jessica;Diaz;jessica.diaz@ems.com;La calle de Jessica, 33;28033;25/01/1980;extra de Jessica\n",
 					false);
 		});
 	}
@@ -66,7 +66,7 @@ public class Test_1 {
 	@Test
 	void test_1_3() {
 		assertThrows(EmsInvalidNumberOfDataException.class, () -> {
-			contactosCovid.loadData("LOCALIZACION;extra de localizacion;87654321K;29/10/2020;13:41;41.3870;2.1698\n", false);
+			contactosCovid.loadData("LOCALIZACION;extra de localizacion;12121212R;29/10/2020;13:41;41.3870;2.1698\n", false);
 		});
 	}
 
@@ -84,7 +84,7 @@ public class Test_1 {
 	@Test
 	void test_1_6() {
 		assertThrows(EmsDuplicateLocationException.class, () -> {
-			contactosCovid.loadData("LOCALIZACION;87654321K;25/10/2021;23:55;91.3971;12.1699\n", false);
+			contactosCovid.loadData("LOCALIZACION;12121212R;25/10/2021;23:55;91.3971;12.1699\n", false);
 		});
 	}
 
@@ -119,7 +119,7 @@ public class Test_1 {
 	@DisplayName("Busca una persona que existe")
 	@Test
 	void test_1_9() throws EmsPersonNotFoundException {
-		assertEquals(contactosCovid.findPersona("87654321K"), 1);
+		assertEquals(contactosCovid.findPersona("12121212R"), 1);
 
 	}
 
@@ -136,7 +136,7 @@ public class Test_1 {
 	@Test
 	void test_1_11() throws EmsPersonNotFoundException {
 		try {
-			assertEquals(contactosCovid.localizacionPersona("87654321K").size(),3);
+			assertEquals(contactosCovid.localizacionPersona("12121212R").size(),3);
 		} catch (EmsPersonNotFoundException e) {
 			e.printStackTrace();
 		}	

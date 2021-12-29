@@ -1,4 +1,4 @@
-package com.practica.ems;
+package com.practica.genericas;
 
 public class PosicionPersona {
 	private Coordenada coordenada;

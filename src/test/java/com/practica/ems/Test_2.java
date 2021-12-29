@@ -18,7 +18,7 @@ import com.practica.exception.EmsLocalizationNotFoundException;
 import com.practica.exception.EmsPersonNotFoundException;
 import com.practicas.ems.covid.ContactosCovid;
 
-public class Test_2_Fichero {
+public class Test_2 {
 
 	private static ContactosCovid contactosCovid;
 
@@ -33,10 +33,10 @@ public class Test_2_Fichero {
 	void test_1_1() {
 		assertThrows(EmsInvalidTypeException.class, () -> {
 			contactosCovid.loadData(
-					"PERSONAS;87654321K;Jessica;Diaz;jessica.diaz@ems.com;La calle de Jessica, 33;28033;25/01/1980", false);
+					"PERSONAS;12121212R;Jessica;Diaz;jessica.diaz@ems.com;La calle de Jessica, 33;28033;25/01/1980", false);
 		});
 		assertThrows(EmsInvalidTypeException.class, () -> {
-			contactosCovid.loadData("LOCALIZACIONA;87654321K;25/10/2021;23:41;41.3870;2.1698\n", false);
+			contactosCovid.loadData("LOCALIZACIONA;12121212R;25/10/2021;23:41;41.3870;2.1698\n", false);
 		});
 	}
 
@@ -45,7 +45,7 @@ public class Test_2_Fichero {
 	void test_1_2() {
 		assertThrows(EmsInvalidNumberOfDataException.class, () -> {
 			contactosCovid.loadData(
-					"PERSONA;87654321K;Jessica;Diaz;jessica.diaz@ems.com;La calle de Jessica, 33;28033;25/01/1980;extra de Jessica\n",
+					"PERSONA;12121212R;Jessica;Diaz;jessica.diaz@ems.com;La calle de Jessica, 33;28033;25/01/1980;extra de Jessica\n",
 					false);
 		});
 	}
@@ -54,7 +54,7 @@ public class Test_2_Fichero {
 	@Test
 	void test_1_3() {
 		assertThrows(EmsInvalidNumberOfDataException.class, () -> {
-			contactosCovid.loadData("LOCALIZACION;extra de localizacion;87654321K;29/10/2020;13:41;41.3870;2.1698\n", false);
+			contactosCovid.loadData("LOCALIZACION;extra de localizacion;12121212R;29/10/2020;13:41;41.3870;2.1698\n", false);
 		});
 	}
 
@@ -72,7 +72,7 @@ public class Test_2_Fichero {
 	@Test
 	void test_1_6() {
 		assertThrows(EmsDuplicateLocationException.class, () -> {
-			contactosCovid.loadData("LOCALIZACION;87654321K;25/10/2021;23:55;91.3971;12.1699\n", false);
+			contactosCovid.loadData("LOCALIZACION;12121212R;25/10/2021;23:55;91.3971;12.1699\n", false);
 		});
 	}
 
@@ -107,7 +107,7 @@ public class Test_2_Fichero {
 	@DisplayName("Busca una persona que existe")
 	@Test
 	void test_1_9() throws EmsPersonNotFoundException {
-		assertEquals(contactosCovid.findPersona("87654321K"), 1);
+		assertEquals(contactosCovid.findPersona("12121212R"), 1);
 
 	}
 
@@ -124,7 +124,7 @@ public class Test_2_Fichero {
 	@Test
 	void test_1_11() throws EmsPersonNotFoundException {
 		try {
-			assertEquals(contactosCovid.localizacionPersona("87654321K").size(),3);
+			assertEquals(contactosCovid.localizacionPersona("12121212R").size(),3);
 		} catch (EmsPersonNotFoundException e) {
 			e.printStackTrace();
 		}	

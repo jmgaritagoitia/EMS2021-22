@@ -3,10 +3,10 @@ package com.practicas.ems.covid;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import com.practica.ems.FechaHora;
-import com.practica.ems.Persona;
 import com.practica.exception.EmsDuplicatePersonException;
 import com.practica.exception.EmsPersonNotFoundException;
+import com.practica.genericas.FechaHora;
+import com.practica.genericas.Persona;
 
 public class Poblacion {
 	LinkedList<Persona> lista ;
@@ -35,6 +35,11 @@ public class Poblacion {
 	
 	public void delPersona(String documento) throws EmsPersonNotFoundException {
 		int pos=-1;
+		/**
+		 * Busca la persona por documento, en caso de encontrarla
+		 * devuelve la posición dentro de la lista, sino está lanza
+		 * una excepción
+		 */
 		try {
 			pos = findPersona(documento);
 		} catch (EmsPersonNotFoundException e) {

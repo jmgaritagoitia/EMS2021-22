@@ -1,6 +1,10 @@
-package com.practica.ems;
+package com.practica.genericas;
 
-public class FechaHora {
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Locale;
+
+public class FechaHora implements Comparable<FechaHora>{
 	public class Fecha {
 		private int dia, mes, anio;
 		 
@@ -130,6 +134,16 @@ public class FechaHora {
 				&& getFecha().getAnio() == fecha.getFecha().getAnio()
 				&& getHora().getHora() == fecha.getHora().getHora()
 				&& getHora().getMinuto() == fecha.getHora().getMinuto();
+	}
+
+	@Override
+	public int compareTo(FechaHora o) {
+		LocalDateTime dateTime1= LocalDateTime.of(this.getFecha().getAnio(), this.getFecha().getMes(), this.getFecha().getDia(), 
+				this.getHora().getHora(), this.getHora().getMinuto());
+		LocalDateTime dateTime2= LocalDateTime.of(o.getFecha().getAnio(), o.getFecha().getMes(), o.getFecha().getDia(), 
+				o.getHora().getHora(), o.getHora().getMinuto());
+		
+		return dateTime1.compareTo(dateTime2);
 	}
 	
 	
