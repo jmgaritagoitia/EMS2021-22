@@ -88,7 +88,7 @@ public class Persona {
 		// Print address and CP
 		cadena += String.format("%s,%s;", getDireccion(), getCp());
 		// Print birthday date
-		cadena += String.format("%02d/%02d/%04d\n", getFechaNacimiento().getFecha().getDia(),
+		cadena += String.format("%02d/%02d/%04d\n", fecha.getFecha().getDia(),
 				fecha.getFecha().getMes(),
 				fecha.getFecha().getAnio());
 
