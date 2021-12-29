@@ -11,6 +11,7 @@ import com.practica.exception.EmsDuplicateLocationException;
 import com.practica.exception.EmsDuplicatePersonException;
 import com.practica.exception.EmsInvalidNumberOfDataException;
 import com.practica.exception.EmsInvalidTypeException;
+import com.practica.genericas.FechaHora;
 import com.practicas.ems.covid.ContactosCovid;
 
 public class Test_3 {
@@ -67,4 +68,13 @@ public class Test_3 {
 		contactosCovid.loadData("LOCALIZACION;12121212R;25/05/2021;17:05;43.3870;2.3698", false);
 		assertEquals(contactosCovid.getListaContactos().toString(), "25/05/2021;16:30 25/05/2021;16:36 25/05/2021;17:05 25/05/2021;17:18 25/05/2021;18:01");		
 	}
+	
+	@DisplayName("Comprobamos el numero de personas entre dos instantes temporales")
+	@Test
+	void test_8 () throws EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicatePersonException, EmsDuplicateLocationException {
+		FechaHora ini = new FechaHora(25,5,2021,16,30);
+		FechaHora fin = new FechaHora(25,5,2021,16,30);
+		assertEquals(contactosCovid.getListaContactos().numPersonasEntreDosInstantes(ini,fin), 4);		
+	}
+	
 }
