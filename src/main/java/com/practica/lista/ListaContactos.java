@@ -162,6 +162,29 @@ public class ListaContactos {
 		return cont;
 	}
 	
+	public int numNodosCoordenadaEntreDosInstantes(FechaHora inicio, FechaHora fin) {
+		if(this.size==0)
+			return 0;
+		NodoTemporal aux = lista;
+		int cont = 0;
+		int a;
+		cont = 0;
+		while(aux!=null) {
+			if(aux.getFecha().compareTo(inicio)>=0 && aux.getFecha().compareTo(fin)<=0) {
+				NodoPosicion nodo = aux.getListaCoordenadas();
+				while(nodo!=null) {
+					cont = cont + 1;
+					nodo = nodo.getSiguiente();
+				}				
+				aux = aux.getSiguiente();
+			}else {
+				aux=aux.getSiguiente();
+			}
+		}
+		return cont;
+	}
+	
+	
 	@Override
 	public String toString() {
 		String cadena="";

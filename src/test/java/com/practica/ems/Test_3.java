@@ -20,7 +20,7 @@ public class Test_3 {
 	@BeforeEach
 	void setUp() {		
 		contactosCovid = new ContactosCovid();
-		contactosCovid.loadDataFile("datos2.txt", false);
+		contactosCovid.loadDataFile("datos2_copia.txt", false);
 	}
 	@DisplayName("Se genera la lista de contactos")
 	@Test
@@ -75,6 +75,22 @@ public class Test_3 {
 		FechaHora ini = new FechaHora(25,5,2021,16,30);
 		FechaHora fin = new FechaHora(25,5,2021,16,30);
 		assertEquals(contactosCovid.getListaContactos().numPersonasEntreDosInstantes(ini,fin), 4);		
+	}
+	
+	@DisplayName("Comprobamos el numero de personas entre dos instantes temporales")
+	@Test
+	void test_9 () throws EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicatePersonException, EmsDuplicateLocationException {
+		FechaHora ini = new FechaHora(25,5,2021,16,36);
+		FechaHora fin = new FechaHora(25,5,2021,16,36);
+		assertEquals(contactosCovid.getListaContactos().numPersonasEntreDosInstantes(ini,fin), 4);		
+	}
+	
+	@DisplayName("Comprobamos el numero de nodos coordenada entre dos instantes temporales")
+	@Test
+	void test_10 () throws EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicatePersonException, EmsDuplicateLocationException {
+		FechaHora ini = new FechaHora(25,5,2021,16,36);
+		FechaHora fin = new FechaHora(25,5,2021,16,36);
+		assertEquals(contactosCovid.getListaContactos().numNodosCoordenadaEntreDosInstantes(ini,fin), 3);		
 	}
 	
 }
