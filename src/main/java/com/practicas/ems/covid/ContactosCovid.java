@@ -1,5 +1,9 @@
 package com.practicas.ems.covid;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import com.practica.ems.Constantes;
 import com.practica.ems.Coordenada;
 import com.practica.ems.FechaHora;
@@ -93,8 +97,38 @@ public class ContactosCovid {
 		}		
 	}
 	
-	public void localizacionPersona (String documento) {
-		
+	public List<PosicionPersona> localizacionPersona (String documento) throws EmsPersonNotFoundException  {
+		int cont = 0;
+		List<PosicionPersona> lista = new ArrayList<PosicionPersona>();
+	    Iterator<PosicionPersona> it = this.localizacion.getLista().iterator();
+	    while(it.hasNext()) {
+	    	PosicionPersona pp = it.next();
+	    	if(pp.getDocumento().equals(documento)) { 
+	    		cont++;
+	    		lista.add(pp);
+	    	}
+	    } 
+	    if(cont==0)
+	    	throw new EmsPersonNotFoundException();
+	    else
+	    	return lista;
+	}
+	
+	public boolean delPersona (String documento) throws EmsPersonNotFoundException {
+		int cont=0, pos=-1;
+		Iterator<Persona> it = this.poblacion.getLista().iterator();
+		while (it.hasNext()) {
+			Persona persona = it.next();			
+			if(persona.getDocumento().equals(documento)) {
+				pos=cont;
+			}
+			cont++;
+		}	
+		if(pos==-1) {
+			throw new EmsPersonNotFoundException();
+		}
+		this.poblacion.getLista().remove(pos);
+		return false;
 	}
 	
 	private String[] dividirEntrada(String input) {

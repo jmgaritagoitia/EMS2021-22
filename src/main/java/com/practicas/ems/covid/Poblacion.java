@@ -15,6 +15,14 @@ public class Poblacion {
 		this.lista = new LinkedList<Persona>();
 	}
 	
+	public LinkedList<Persona> getLista() {
+		return lista;
+	}
+
+	public void setLista(LinkedList<Persona> lista) {
+		this.lista = lista;
+	}
+
 	public void addPersona (Persona persona) throws EmsDuplicatePersonException {
 		try {
 			findPersona(persona.getDocumento());

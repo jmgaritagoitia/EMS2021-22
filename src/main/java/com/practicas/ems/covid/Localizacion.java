@@ -17,6 +17,14 @@ public class Localizacion {
 		this.lista = new LinkedList<PosicionPersona>();
 	};
 	
+	public LinkedList<PosicionPersona> getLista() {
+		return lista;
+	}
+
+	public void setLista(LinkedList<PosicionPersona> lista) {
+		this.lista = lista;
+	}
+
 	public void addLocalizacion (PosicionPersona p) throws EmsDuplicateLocationException {
 		try {
 			findLocalizacion(p.getDocumento(), p.getFechaPosicion());
@@ -32,7 +40,7 @@ public class Localizacion {
 	    while(it.hasNext()) {
 	    	cont++;
 	    	PosicionPersona pp = it.next();
-	    	if(pp.getDocumento().endsWith(documento) && 
+	    	if(pp.getDocumento().equals(documento) && 
 	    	   pp.getFechaPosicion().equals(fecha)) {
 	    		return cont;
 	    	}
@@ -85,8 +93,7 @@ public class Localizacion {
 	        		pp.getCoordenada().getLongitud());
 	    }
 		
-		return cadena;
-		
+		return cadena;		
 	}
 	
 }
