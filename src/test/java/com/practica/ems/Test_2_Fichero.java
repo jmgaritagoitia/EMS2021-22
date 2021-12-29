@@ -95,7 +95,7 @@ public class Test_2_Fichero {
 	@Test
 	void test_1_8() throws EmsLocalizationNotFoundException {
 		try {
-			contactosCovid.loadData("LOCALIZACION;12345678J;16/05/2021;20:45:41;54.3890;28.1698\n", false);
+			contactosCovid.loadData("LOCALIZACION;12345678J;16/05/2021;20:45;54.3890;28.1698\n", false);
 			Assertions.assertEquals(contactosCovid.findLocalizacion("12345678J", "16/05/2021", "20:45"), 5);
 		} catch (EmsInvalidTypeException | EmsInvalidNumberOfDataException | EmsDuplicatePersonException
 				| EmsDuplicateLocationException e) {

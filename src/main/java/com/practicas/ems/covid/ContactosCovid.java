@@ -12,7 +12,6 @@ import com.practica.ems.Coordenada;
 import com.practica.ems.FechaHora;
 import com.practica.ems.Persona;
 import com.practica.ems.PosicionPersona;
-import com.practica.ems.Utilidades;
 import com.practica.exception.EmsDuplicateLocationException;
 import com.practica.exception.EmsDuplicatePersonException;
 import com.practica.exception.EmsInvalidNumberOfDataException;
@@ -68,9 +67,9 @@ public class ContactosCovid {
 				if (datos.length != Constantes.MAX_DATOS_LOCALIZACION) {
 					throw new EmsInvalidNumberOfDataException("El número de datos para LOCALIZACION es menor de 6");
 				}
-				this.localizacion.addLocalizacion(this.crearPosicionPersona(datos));
+				PosicionPersona pp = this.crearPosicionPersona(datos);
+				this.localizacion.addLocalizacion(pp);
 			}
-
 		}
 	}
 
@@ -145,10 +144,10 @@ public class ContactosCovid {
 	}
 
 	public int findLocalizacion(String documento, String fecha, String hora) throws EmsLocalizationNotFoundException {
-		FechaHora fechaHora = Utilidades.parsearFecha(fecha, hora);
+
 		int pos;
 		try {
-			pos = localizacion.findLocalizacion(documento, fechaHora);
+			pos = localizacion.findLocalizacion(documento, fecha, hora);
 			return pos;
 		} catch (EmsLocalizationNotFoundException e) {
 			throw new EmsLocalizationNotFoundException();
@@ -223,7 +222,7 @@ public class ContactosCovid {
 				persona.setCp(s);
 				break;
 			case 7:
-				persona.setFechaNacimiento(Utilidades.parsearFecha(s));
+				persona.setFechaNacimiento(parsearFecha(s));
 				break;
 			}
 		}
@@ -245,7 +244,7 @@ public class ContactosCovid {
 				break;
 			case 3:
 				hora = data[i];
-				posicionPersona.setFechaPosicion(Utilidades.parsearFecha(fecha, hora));
+				posicionPersona.setFechaPosicion(parsearFecha(fecha, hora));
 				break;
 			case 4:
 				latitud = Float.parseFloat(s);
@@ -257,5 +256,29 @@ public class ContactosCovid {
 			}
 		}
 		return posicionPersona;
+	}
+	
+	private FechaHora parsearFecha (String fecha) {
+		int dia, mes, anio;
+		String[] valores = fecha.split("\\/");
+		dia = Integer.parseInt(valores[0]);
+		mes = Integer.parseInt(valores[1]);
+		anio = Integer.parseInt(valores[2]);
+		FechaHora fechaHora = new FechaHora(dia, mes, anio, 0, 0);
+		return fechaHora;
+	}
+	
+	private FechaHora parsearFecha (String fecha, String hora) {
+		int dia, mes, anio;
+		String[] valores = fecha.split("\\/");
+		dia = Integer.parseInt(valores[0]);
+		mes = Integer.parseInt(valores[1]);
+		anio = Integer.parseInt(valores[2]);
+		int minuto, segundo;
+		valores = hora.split("\\:");
+		minuto = Integer.parseInt(valores[0]);
+		segundo = Integer.parseInt(valores[1]);
+		FechaHora fechaHora = new FechaHora(dia, mes, anio, minuto, segundo);
+		return fechaHora;
 	}
 }

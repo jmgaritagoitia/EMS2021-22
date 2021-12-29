@@ -27,33 +27,34 @@ public class Localizacion {
 
 	public void addLocalizacion (PosicionPersona p) throws EmsDuplicateLocationException {
 		try {
-			findLocalizacion(p.getDocumento(), p.getFechaPosicion());
+			findLocalizacion(p.getDocumento(), p.getFechaPosicion().getFecha().toString(),p.getFechaPosicion().getHora().toString() );
 			throw new EmsDuplicateLocationException();
 		}catch(EmsLocalizationNotFoundException e) {
 			lista.add(p);
 		}
 	}
 	
-	public int findLocalizacion (String documento, FechaHora fecha) throws EmsLocalizationNotFoundException {
+	public int findLocalizacion (String documento, String fecha, String hora) throws EmsLocalizationNotFoundException {
 	    int cont = 0;
 	    Iterator<PosicionPersona> it = lista.iterator();
 	    while(it.hasNext()) {
 	    	cont++;
 	    	PosicionPersona pp = it.next();
+	    	FechaHora fechaHora = this.parsearFecha(fecha, hora);
 	    	if(pp.getDocumento().equals(documento) && 
-	    	   pp.getFechaPosicion().equals(fecha)) {
+	    	   pp.getFechaPosicion().equals(fechaHora)) {
 	    		return cont;
 	    	}
 	    } 
 	    throw new EmsLocalizationNotFoundException();
 	}
-	public void delLocalizacion(String documento, FechaHora fecha) throws EmsLocalizationNotFoundException {
+	public void delLocalizacion(String documento, String fecha, String hora) throws EmsLocalizationNotFoundException {
 	    int pos=-1;
 	    int i;
 	    
 	    // Find if it exists
 	    try {
-			pos = findLocalizacion(documento, fecha);
+			pos = findLocalizacion(documento, fecha, hora);
 		} catch (EmsLocalizationNotFoundException e) {
 			throw new EmsLocalizationNotFoundException();
 		}
@@ -94,6 +95,30 @@ public class Localizacion {
 	    }
 		
 		return cadena;		
+	}
+	
+	private FechaHora parsearFecha (String fecha) {
+		int dia, mes, anio;
+		String[] valores = fecha.split("\\/");
+		dia = Integer.parseInt(valores[0]);
+		mes = Integer.parseInt(valores[1]);
+		anio = Integer.parseInt(valores[2]);
+		FechaHora fechaHora = new FechaHora(dia, mes, anio, 0, 0);
+		return fechaHora;
+	}
+	
+	private  FechaHora parsearFecha (String fecha, String hora) {
+		int dia, mes, anio;
+		String[] valores = fecha.split("\\/");
+		dia = Integer.parseInt(valores[0]);
+		mes = Integer.parseInt(valores[1]);
+		anio = Integer.parseInt(valores[2]);
+		int minuto, segundo;
+		valores = hora.split("\\:");
+		minuto = Integer.parseInt(valores[0]);
+		segundo = Integer.parseInt(valores[1]);
+		FechaHora fechaHora = new FechaHora(dia, mes, anio, minuto, segundo);
+		return fechaHora;
 	}
 	
 }

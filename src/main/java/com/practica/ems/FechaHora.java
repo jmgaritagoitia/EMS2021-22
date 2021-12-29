@@ -35,6 +35,14 @@ public class FechaHora {
 			this.anio = anio;
 		}
 
+		@Override
+		public String toString() {
+			String cadena = String.format("%2d/%02d/%4d",dia,mes,anio);
+			return cadena;
+		}
+		
+		
+
 	}
 
 	public class Hora {
@@ -61,6 +69,12 @@ public class FechaHora {
 		public void setMinuto(int minuto) {
 			this.minuto = minuto;
 		}
+
+		@Override
+		public String toString() {
+			return String.format("%02d:%02d", hora,minuto);
+		}
+		
 
 	}
 

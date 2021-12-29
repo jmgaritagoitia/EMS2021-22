@@ -20,6 +20,7 @@ public class Principal {
 			contactosCovid.loadData(test_data_str, false);
 			System.out.println(contactosCovid.getLocalizacion().toString());
 			System.out.println(contactosCovid.getPoblacion().toString());
+			contactosCovid.loadData("LOCALIZACION;12345678J;16/05/2021;20:45;54.3890;28.1698\n", false);
 		} catch (EmsInvalidTypeException | EmsInvalidNumberOfDataException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
