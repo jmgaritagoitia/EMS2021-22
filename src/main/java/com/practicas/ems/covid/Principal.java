@@ -18,10 +18,12 @@ public class Principal {
 		ContactosCovid contactosCovid = new ContactosCovid();
 		try {
 			contactosCovid.loadData(test_data_str, false);
-			
+			System.out.println(contactosCovid.getLocalizacion().toString());
+			System.out.println(contactosCovid.getPoblacion().toString());
 		} catch (EmsInvalidTypeException | EmsInvalidNumberOfDataException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 }

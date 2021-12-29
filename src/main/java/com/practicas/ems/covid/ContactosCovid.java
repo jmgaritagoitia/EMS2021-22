@@ -23,6 +23,26 @@ public class ContactosCovid {
 	}
 	
 	
+	public Poblacion getPoblacion() {
+		return poblacion;
+	}
+
+
+	public void setPoblacion(Poblacion poblacion) {
+		this.poblacion = poblacion;
+	}
+
+
+	public Localizacion getLocalizacion() {
+		return localizacion;
+	}
+
+
+	public void setLocalizacion(Localizacion localizacion) {
+		this.localizacion = localizacion;
+	}
+
+
 	public void loadData(String data, boolean reset) throws EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicatePersonException, EmsDuplicateLocationException {
 		// borro información anterior
 		if(reset) {
@@ -71,6 +91,10 @@ public class ContactosCovid {
 		} catch (EmsLocalizationNotFoundException e) {
 			throw new EmsLocalizationNotFoundException();
 		}		
+	}
+	
+	public void localizacionPersona (String documento) {
+		
 	}
 	
 	private String[] dividirEntrada(String input) {

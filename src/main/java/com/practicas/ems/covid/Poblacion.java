@@ -63,6 +63,26 @@ public class Poblacion {
 	         lista.get(i).getFechaNacimiento().getFecha().getAnio());	        
 	    }
 	}
+
+	@Override
+	public String toString() {
+		String cadena = "";
+		for(int i = 0; i < lista.size(); i++) {
+	        // Print position and document	    	
+	        cadena+=String.format("%s;", lista.get(i).getDocumento());
+	        // Print name and surname	              
+	        cadena+=String.format("%s,%s;",lista.get(i).getApellidos(), lista.get(i).getNombre());	        
+	        // Print email	
+	        cadena+=String.format("%s;", lista.get(i).getEmail());
+	        // Print address and CP
+	        cadena+=String.format("%s,%s;", lista.get(i).getDireccion(), lista.get(i).getCp());	        
+	        // Print birthday date
+	        cadena+=String.format("%02d/%02d/%04d\n", lista.get(i).getFechaNacimiento().getFecha().getDia(), 
+	         lista.get(i).getFechaNacimiento().getFecha().getMes(), 
+	         lista.get(i).getFechaNacimiento().getFecha().getAnio());
+		}
+		return cadena;
+	}
 	
 	
 	

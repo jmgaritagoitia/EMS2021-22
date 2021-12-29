@@ -1,13 +1,13 @@
 package com.practica.ems;
 
 public class Persona {
-	private String nombre, apellidos,documento, email, direccion, cp;	
+	private String nombre, apellidos, documento, email, direccion, cp;
 	FechaHora fechaNacimiento;
-	
-	public Persona () {
-		
+
+	public Persona() {
+
 	}
-	
+
 	public Persona(String nombre, String apellidos, String documento, String email, String direccion,
 			FechaHora fechaNacimiento) {
 		super();
@@ -18,47 +18,79 @@ public class Persona {
 		this.direccion = direccion;
 		this.fechaNacimiento = fechaNacimiento;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
 	public String getApellidos() {
 		return apellidos;
 	}
+
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
+
 	public String getDocumento() {
 		return documento;
 	}
+
 	public void setDocumento(String documento) {
 		this.documento = documento;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getDireccion() {
 		return direccion;
 	}
+
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
+
 	public String getCp() {
 		return cp;
 	}
+
 	public void setCp(String cp) {
 		this.cp = cp;
 	}
+
 	public FechaHora getFechaNacimiento() {
 		return fechaNacimiento;
 	}
+
 	public void setFechaNacimiento(FechaHora fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		String cadena = "";
+		// Print position and document
+		cadena += String.format("%s;", getDocumento());
+		// Print name and surname
+		cadena += String.format("%s,%s;", getApellidos(), getNombre());
+		// Print email
+		cadena += String.format("%s;", getEmail());
+		// Print address and CP
+		cadena += String.format("%s,%s;", getDireccion(), getCp());
+		// Print birthday date
+		cadena += String.format("%02d/%02d/%04d\n", getFechaNacimiento().getFecha().getDia(),
+				getFechaNacimiento().getFecha().getMes(),
+				getFechaNacimiento().getFecha().getAnio());
+
+		return cadena;
+	}
 }
