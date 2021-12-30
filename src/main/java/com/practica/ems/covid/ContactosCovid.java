@@ -1,4 +1,5 @@
-package com.practicas.ems.covid;
+package com.practica.ems.covid;
+
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,12 +8,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.practica.exception.EmsDuplicateLocationException;
-import com.practica.exception.EmsDuplicatePersonException;
-import com.practica.exception.EmsInvalidNumberOfDataException;
-import com.practica.exception.EmsInvalidTypeException;
-import com.practica.exception.EmsLocalizationNotFoundException;
-import com.practica.exception.EmsPersonNotFoundException;
+import com.practica.excecption.EmsDuplicateLocationException;
+import com.practica.excecption.EmsDuplicatePersonException;
+import com.practica.excecption.EmsInvalidNumberOfDataException;
+import com.practica.excecption.EmsInvalidTypeException;
+import com.practica.excecption.EmsLocalizationNotFoundException;
+import com.practica.excecption.EmsPersonNotFoundException;
 import com.practica.genericas.Constantes;
 import com.practica.genericas.Coordenada;
 import com.practica.genericas.FechaHora;
@@ -97,6 +98,7 @@ public class ContactosCovid {
 		
 	}
 
+	@SuppressWarnings("resource")
 	public void loadDataFile(String fichero, boolean reset, File archivo, FileReader fr, BufferedReader br, String datas[], String data ) {
 		try {
 			// Apertura del fichero y creacion de BufferedReader para poder

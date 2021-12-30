@@ -1,4 +1,5 @@
-package com.practica.exception;
+package com.practica.excecption;
+
 
 public class EmsDuplicateLocationException extends Exception{
 	public EmsDuplicateLocationException() {

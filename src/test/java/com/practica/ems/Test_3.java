@@ -7,12 +7,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import com.practica.exception.EmsDuplicateLocationException;
-import com.practica.exception.EmsDuplicatePersonException;
-import com.practica.exception.EmsInvalidNumberOfDataException;
-import com.practica.exception.EmsInvalidTypeException;
+import com.practica.ems.covid.ContactosCovid;
+import com.practica.excecption.EmsDuplicateLocationException;
+import com.practica.excecption.EmsDuplicatePersonException;
+import com.practica.excecption.EmsInvalidNumberOfDataException;
+import com.practica.excecption.EmsInvalidTypeException;
+import com.practica.excecption.EmsLocalizationNotFoundException;
+import com.practica.excecption.EmsPersonNotFoundException;
 import com.practica.genericas.FechaHora;
-import com.practicas.ems.covid.ContactosCovid;
 
 public class Test_3 {
 	private static ContactosCovid contactosCovid;
@@ -20,9 +22,9 @@ public class Test_3 {
 	@BeforeEach
 	void setUp() {		
 		contactosCovid = new ContactosCovid();
-		contactosCovid.loadDataFile("datos2_copia.txt", false);
+		contactosCovid.loadDataFile("datos2.txt", false);
 	}
-	@DisplayName("Se genera la lista de contactos")
+	@DisplayName("Comprobamos que se genera la lista de contactos")
 	@Test
 	void test_1 () {
 		assertNotNull(contactosCovid.getListaContactos());		
@@ -93,4 +95,22 @@ public class Test_3 {
 		assertEquals(contactosCovid.getListaContactos().numNodosCoordenadaEntreDosInstantes(ini,fin), 3);		
 	}
 	
+	@DisplayName("Comprobamos el numero de nodos coordenada y el número de personas entre dos instantes temporales")
+	@Test
+	void test_11 () throws EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicatePersonException, EmsDuplicateLocationException {
+		FechaHora ini = new FechaHora(25,5,2021,16,30);
+		FechaHora fin = new FechaHora(25,5,2021,18,01);
+		assertEquals(contactosCovid.getListaContactos().numNodosCoordenadaEntreDosInstantes(ini,fin), 10);	
+		assertEquals(contactosCovid.getListaContactos().numPersonasEntreDosInstantes(ini,fin), 16);
+	}
+	
+	@DisplayName("Aniadimos un nuevo nodo coordenadas en una nodo temporal que existe")
+	@Test
+	void test_12 () throws EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicatePersonException, EmsDuplicateLocationException {
+		FechaHora ini = new FechaHora(25,5,2021,16,36);
+		FechaHora fin = new FechaHora(25,5,2021,16,36);
+		assertEquals(contactosCovid.getListaContactos().numNodosCoordenadaEntreDosInstantes(ini,fin), 3);
+		contactosCovid.loadData("LOCALIZACION;99998888X;25/05/2021;16:36;54.2256;32.1234", false);
+		assertEquals(contactosCovid.getListaContactos().numNodosCoordenadaEntreDosInstantes(ini,fin), 4);		
+	}
 }

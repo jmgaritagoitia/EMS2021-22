@@ -1,9 +1,10 @@
 package com.practica.lista;
 
 import com.practica.genericas.Coordenada;
+
 /**
- * Lista de nodos de coordenadas. En ella guardamos las veces que una persona está
- * en una coordenada  
+ * Nodo para la lista de coordenadas. En el guardamos cuántas personas  están
+ * en una coordenada  en un momento temporal.
  */
 public class NodoPosicion {
 	private Coordenada coordenada;

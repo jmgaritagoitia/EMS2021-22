@@ -1,12 +1,12 @@
-package com.practicas.ems.covid;
+package com.practica.ems.covid;
+
 
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import com.practica.exception.EmsDuplicateLocationException;
-import com.practica.exception.EmsLocalizationNotFoundException;
+import com.practica.excecption.EmsDuplicateLocationException;
+import com.practica.excecption.EmsLocalizationNotFoundException;
 import com.practica.genericas.FechaHora;
-import com.practica.genericas.Persona;
 import com.practica.genericas.PosicionPersona;
 
 public class Localizacion {

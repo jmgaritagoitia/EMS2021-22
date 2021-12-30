@@ -1,9 +1,9 @@
-package com.practicas.ems.covid;
+package com.practica.ems.covid;
 
-import com.practica.exception.EmsDuplicateLocationException;
-import com.practica.exception.EmsDuplicatePersonException;
-import com.practica.exception.EmsInvalidNumberOfDataException;
-import com.practica.exception.EmsInvalidTypeException;
+import com.practica.excecption.EmsDuplicateLocationException;
+import com.practica.excecption.EmsDuplicatePersonException;
+import com.practica.excecption.EmsInvalidNumberOfDataException;
+import com.practica.excecption.EmsInvalidTypeException;
 import com.practica.genericas.FechaHora;
 
 public class Principal {

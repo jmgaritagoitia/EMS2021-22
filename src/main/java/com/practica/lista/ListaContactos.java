@@ -8,6 +8,9 @@ public class ListaContactos {
 	private NodoTemporal lista;
 	private int size;
 	
+	/**
+	 * Insertamos en la lista de nodos temporales, y a la vez inserto en la lista de nodos de coordenadas
+	 */
 	public void insertarNodoTemporal (PosicionPersona p) {
 		NodoTemporal aux = lista, ant=null;
 		boolean salir=false,  encontrado = false;
@@ -19,7 +22,7 @@ public class ListaContactos {
 			if(aux.getFecha().compareTo(p.getFechaPosicion())==0) {
 				encontrado = true;
 				salir = true;
-				//this.insertarCoordenada(aux, p.getCoordenada());
+
 				NodoPosicion npActual = aux.getListaCoordenadas();
 				NodoPosicion npAnt=null;		
 				boolean npEncontrado = false;
@@ -53,7 +56,7 @@ public class ListaContactos {
 		if(!encontrado) {
 			NodoTemporal nuevo = new NodoTemporal();
 			nuevo.setFecha(p.getFechaPosicion());
-			//this.insertarCoordenada(nuevo, p.getCoordenada());
+
 			
 			NodoPosicion npActual = nuevo.getListaCoordenadas();
 			NodoPosicion npAnt=null;	
@@ -86,33 +89,6 @@ public class ListaContactos {
 			
 		}
 	}
-	/**
-	 * 
-	 * Insertamos la coordenada en lia lista de coordenadas el nodo temporal 
-	 * en el que estamos trabajando
-	 */
-	private void insertarCoordenada (NodoTemporal nodo,  Coordenada coordenada) {		
-		NodoPosicion actual = nodo.getListaCoordenadas();
-		NodoPosicion ant=null;
-		boolean encontrado = false;
-		while (actual!=null && !encontrado) {
-			if(actual.getCoordenada().equals(coordenada)) {
-				encontrado=true;
-				actual.setNumPersonas(actual.getNumPersonas()+1);
-			}else {
-				ant = actual;
-				actual = actual.getSiguiente();
-			}
-		}
-		if(!encontrado) {
-			NodoPosicion nuevo = new NodoPosicion(coordenada, 1, null);
-			if(nodo.getListaCoordenadas()==null)
-				nodo.setListaCoordenadas(nuevo);
-			else {
-				ant.setSiguiente(nuevo);				
-			}						
-		}
-	}
 	
 	
 	public int personasEnCoordenadas () {
@@ -140,6 +116,11 @@ public class ListaContactos {
 		return cadena;
 	}
 
+	/**
+	 * Métodos para comprobar que insertamos de manera correcta en las listas de 
+	 * coordenadas, no tienen una utilidad en sí misma, más allá de comprobar que
+	 * nuestra lista funciona de manera correcta.
+	 */
 	public int numPersonasEntreDosInstantes(FechaHora inicio, FechaHora fin) {
 		if(this.size==0)
 			return 0;
@@ -161,6 +142,7 @@ public class ListaContactos {
 		}
 		return cont;
 	}
+	
 	
 	public int numNodosCoordenadaEntreDosInstantes(FechaHora inicio, FechaHora fin) {
 		if(this.size==0)
